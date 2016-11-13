@@ -6,7 +6,9 @@ package com.sajorahasan.yallaroom;
 
 public class Config {
 
-    public static final String BASE_URL = "http://192.168.0.105:8080/yallaroom/";
-    public static final String POST_AD = "postAd.php";
+    //public static final String BASE_URL = "http://192.168.0.100:8080/yallaroom/";
+    public static final String BASE_URL = "http://salespoint.16mb.com/yallaroom/";
+    public static final String POST_AD = "postAd1.php";
     public static final String SHOW_ROOMS = "showRooms.php";
+
 }

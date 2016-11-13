@@ -45,9 +45,6 @@ public class SearchActivity extends AppCompatActivity {
 
         LoadRooms loadRooms = new LoadRooms();
         loadRooms.execute();
-
-        //recyclerView.setAdapter(adapter);
-
     }
 
 
@@ -72,15 +69,16 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray array = object.getJSONArray("room");
 
                 for (int i = 0; i < array.length(); i++) {
+
                     Pojo p = new Pojo();
                     JSONObject object1 = array.getJSONObject(i);
 
                     int id = object1.getInt("id");
-                    String name = object1.getString("name");
+                    String name = object1.getString("person_name");
                     String add = object1.getString("address");
                     String phone = object1.getString("phone");
                     String desc = object1.getString("room_desc");
-                    String image = object1.getString("image");
+                    String image = object1.getString("url");
 
                     p.setId(id);
                     p.setName(name);
@@ -88,12 +86,12 @@ public class SearchActivity extends AppCompatActivity {
                     p.setPhone(phone);
                     p.setDesc(desc);
                     p.setImage(image);
+
                     pojoArrayList.add(p);
 
-                    Log.d(TAG, "onPostExecute: " + name);
-                    Log.d(TAG, "onPostExecute: " + phone);
+                    Log.d(TAG, "onPostExecute: " + image);
 
-                    CustomAdapter customAdapter = new CustomAdapter(pojoArrayList);
+                    CustomAdapter customAdapter = new CustomAdapter(pojoArrayList, getApplicationContext());
                     recyclerView.setAdapter(customAdapter);
                 }
 

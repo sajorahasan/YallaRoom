@@ -1,11 +1,14 @@
 package com.sajorahasan.yallaroom.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sajorahasan.yallaroom.Model.Pojo;
 import com.sajorahasan.yallaroom.R;
 
@@ -18,13 +21,16 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private ArrayList<Pojo> arrayList = new ArrayList<>();
+    private Context context;
 
-    public CustomAdapter(ArrayList<Pojo> arrayList) {
+    public CustomAdapter(ArrayList<Pojo> arrayList, Context context) {
         this.arrayList = arrayList;
+        this.context = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvName, tvAddress, tvPhone, tvDesc, tvImage;
+        public ImageView ivThumbnail;
+        private TextView tvName, tvAddress, tvPhone, tvDesc;
 
         public ViewHolder(View view) {
             super(view);
@@ -33,7 +39,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             tvAddress = (TextView) itemView.findViewById(R.id.tvAdd);
             tvPhone = (TextView) itemView.findViewById(R.id.tvPhone);
             tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
-            tvImage = (TextView) itemView.findViewById(R.id.ivImage);
+            ivThumbnail = (ImageView) itemView.findViewById(R.id.ivThumbnail);
         }
     }
 
@@ -53,7 +59,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.tvAddress.setText(arrayList.get(position).getAddress());
         holder.tvPhone.setText(arrayList.get(position).getPhone());
         holder.tvDesc.setText(arrayList.get(position).getDesc());
-        holder.tvImage.setText(arrayList.get(position).getImage());
+        //holder.tvImage.setText(arrayList.get(position).getImage());
+        //Context context = holder.ivThumbnail.getContext();
+//        Picasso.with(context)
+//                .load(arrayList.get(position).getImage())
+//                .error(R.drawable.icon)
+//                .placeholder(R.drawable.post_ad)
+//                .into(holder.ivThumbnail);
+        Glide.with(context).load(arrayList.get(position).getImage()).into(holder.ivThumbnail);
     }
 
     @Override
