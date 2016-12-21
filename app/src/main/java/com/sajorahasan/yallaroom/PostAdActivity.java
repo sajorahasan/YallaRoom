@@ -1,13 +1,13 @@
 package com.sajorahasan.yallaroom;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -28,19 +28,14 @@ import java.util.UUID;
 public class PostAdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "PostAdActivity";
-
-    private EditText etName, etAdd, etPhone, etDesc;
-    private ImageView ivUploadImage;
-
-    private String name, add, phone, desc;
-    private Button btnSubmit;
-
-    //Image request code
-    private int PICK_IMAGE_REQUEST = 1;
-
     //storage permission code
     private static final int STORAGE_PERMISSION_CODE = 123;
-
+    private EditText etName, etAdd, etPhone, etDesc;
+    private ImageView ivUploadImage;
+    private String name, add, phone, desc;
+    private Button btnSubmit;
+    //Image request code
+    private int PICK_IMAGE_REQUEST = 1;
     //Bitmap to get image from gallery
     private Bitmap bitmap;
 
@@ -51,6 +46,9 @@ public class PostAdActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_ad);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         //Requesting storage permission
         requestStoragePermission();
@@ -97,12 +95,6 @@ public class PostAdActivity extends AppCompatActivity implements View.OnClickLis
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        ProgressDialog dialog;
-
-        dialog = new ProgressDialog(PostAdActivity.this);
-        dialog.setMessage("Please wait...");
-        dialog.show();
-
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -129,9 +121,12 @@ public class PostAdActivity extends AppCompatActivity implements View.OnClickLis
         etDesc.setText("");
         ivUploadImage.setImageResource(android.R.color.transparent);
 
-        Toast.makeText(PostAdActivity.this, "Ad posted successfully", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(PostAdActivity.this, SearchActivity.class);
+        startActivity(i);
+        finish();
 
-        dialog.dismiss();
+        Toast.makeText(PostAdActivity.this, "Uploading your Ad, Keep patience. Thank you !", Toast.LENGTH_SHORT).show();
+
     }
 
     //method to show file chooser
@@ -208,5 +203,14 @@ public class PostAdActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
+
     }
 }

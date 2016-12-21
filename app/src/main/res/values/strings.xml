@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">YallaRoom</string>
+    <string name="facebook_app_id">100957173723728</string>
+    <string name="title_activity_test">Test</string>
+    <string name="fb_login_protocol_scheme">fb100957173723728</string>
 </resources>

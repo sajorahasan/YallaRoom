@@ -28,21 +28,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         this.context = context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivThumbnail;
-        private TextView tvName, tvAddress, tvPhone, tvDesc;
-
-        public ViewHolder(View view) {
-            super(view);
-
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvAddress = (TextView) itemView.findViewById(R.id.tvAdd);
-            tvPhone = (TextView) itemView.findViewById(R.id.tvPhone);
-            tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
-            ivThumbnail = (ImageView) itemView.findViewById(R.id.ivThumbnail);
-        }
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -72,5 +57,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView ivThumbnail;
+        private TextView tvName, tvAddress, tvPhone, tvDesc;
+
+        public ViewHolder(View view) {
+            super(view);
+
+            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvAddress = (TextView) itemView.findViewById(R.id.tvAdd);
+            tvPhone = (TextView) itemView.findViewById(R.id.tvPhone);
+            tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
+            ivThumbnail = (ImageView) itemView.findViewById(R.id.ivThumbnail);
+        }
     }
 }

@@ -39,16 +39,17 @@
             android:layout_width="180dp"
             android:layout_height="35dp"
             android:background="@color/colorAccent"
-            android:text="Search Room"
+            android:text="Search Rooms"
             android:textColor="@color/colorPrimaryText" />
 
         <Button
             android:id="@+id/btnBedSpace"
             android:layout_width="180dp"
             android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:background="@color/colorAccent"
-            android:text="Search Bedspace"
+            android:text="Search Bedshare"
             android:textColor="@color/colorPrimaryText" />
     </LinearLayout>
 

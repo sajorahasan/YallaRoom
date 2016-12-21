@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton ibPostAd;
     private Button btnSearch, btnSearchBed;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSearch = (Button) findViewById(R.id.btnSearch);
         btnSearchBed = (Button) findViewById(R.id.btnBedSpace);
 
+
         ibPostAd.setOnClickListener(this);
         btnSearch.setOnClickListener(this);
         btnSearchBed.setOnClickListener(this);
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == ibPostAd) {
-            Intent intent = new Intent(MainActivity.this, PostAdActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
@@ -38,9 +40,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             startActivity(intent);
         }
-        if (view == btnSearchBed){
-
+        if (view == btnSearchBed) {
+            Intent intent = new Intent(MainActivity.this, SearchBedspace.class);
+            startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+        finish();
     }
 }

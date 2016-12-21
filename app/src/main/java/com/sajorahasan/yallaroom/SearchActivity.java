@@ -1,13 +1,17 @@
 package com.sajorahasan.yallaroom;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.sajorahasan.yallaroom.Adapter.CustomAdapter;
 import com.sajorahasan.yallaroom.Model.Pojo;
@@ -22,6 +26,10 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
     private static final String TAG = "SearchActivity";
+
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    LoadRooms loadRooms;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -43,10 +51,39 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        //mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+
+//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                refreshItems();
+//            }
+//        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(SearchActivity.this, PostAdActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         LoadRooms loadRooms = new LoadRooms();
         loadRooms.execute();
     }
 
+    private void refreshItems() {
+
+        onItemsLoadComplete();
+    }
+
+    private void onItemsLoadComplete() {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 
     public class LoadRooms extends AsyncTask {
         @Override

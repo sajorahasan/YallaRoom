@@ -17,6 +17,7 @@
         android:background="@drawable/icon" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivlogo">
@@ -82,14 +83,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload a Image" />
+                android:text="Click below to upload image" />
 
 
             <ImageView
                 android:id="@+id/ivUploadImage"
                 android:layout_width="200dp"
                 android:layout_height="150dp"
-                android:clickable="true" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/upload"
+                android:clickable="true"
+                android:scaleType="fitXY" />
 
             <Button
                 android:id="@+id/btnSubmit"
@@ -97,7 +101,8 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/colorAccent"
-                android:text="Submit" />
+                android:text="Submit"
+                android:textColor="@color/colorPrimaryText" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
